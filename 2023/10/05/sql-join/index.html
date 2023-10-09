@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>SQL JOIN的介绍 | SHENFY_BLOG</title><meta name="author" content="shenfy"><meta name="copyright" content="shenfy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="join算子标准SQL的JOIN在介绍Flink SQL中的JOIN的之前，先回顾一下标准SQL的实现。 JOIN的本质是将多表数据通过相同字段的联系进行拼接，之所以出现多表的情况，也是因为现实中不可能存在一张大表包括所有字段。 JOIN分类：  Cross join - 笛卡尔积（交叉）连接 Inner join - 内连接 Outer join - 外连接(left, right, full)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL JOIN的介绍">
+<meta property="og:url" content="https://shenfengyin.github.io/2023/10/05/sql-join/index.html">
+<meta property="og:site_name" content="SHENFY_BLOG">
+<meta property="og:description" content="join算子标准SQL的JOIN在介绍Flink SQL中的JOIN的之前，先回顾一下标准SQL的实现。 JOIN的本质是将多表数据通过相同字段的联系进行拼接，之所以出现多表的情况，也是因为现实中不可能存在一张大表包括所有字段。 JOIN分类：  Cross join - 笛卡尔积（交叉）连接 Inner join - 内连接 Outer join - 外连接(left, right, full)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://shenfengyin.github.io/img/tech/password.png">
+<meta property="article:published_time" content="2023-10-05T14:21:17.000Z">
+<meta property="article:modified_time" content="2023-10-09T16:12:57.665Z">
+<meta property="article:author" content="shenfy">
+<meta property="article:tag" content="SQL">
+<meta property="article:tag" content="Flink">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shenfengyin.github.io/img/tech/password.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://shenfengyin.github.io/2023/10/05/sql-join/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SQL JOIN的介绍',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-10 00:12:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/cat-yuanbao.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 近期学习</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 机器学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><span> 文档</span></a></li><li><a class="site-page child" href="/projects/"><span> 项目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 相关</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/tech/password.png')"><nav id="nav"><span id="blog-info"><a href="/" title="SHENFY_BLOG"><span class="site-name">SHENFY_BLOG</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 近期学习</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 机器学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><span> 文档</span></a></li><li><a class="site-page child" href="/projects/"><span> 项目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 相关</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SQL JOIN的介绍</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-05T14:21:17.000Z" title="发表于 2023-10-05 22:21:17">2023-10-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-09T16:12:57.665Z" title="更新于 2023-10-10 00:12:57">2023-10-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SQL/">SQL</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SQL/Flink/">Flink</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SQL JOIN的介绍"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="join算子"><a href="#join算子" class="headerlink" title="join算子"></a>join算子</h2><h3 id="标准SQL的JOIN"><a href="#标准SQL的JOIN" class="headerlink" title="标准SQL的JOIN"></a>标准SQL的JOIN</h3><p>在介绍Flink SQL中的JOIN的之前，先回顾一下标准SQL的实现。</p>
+<p>JOIN的本质是将多表数据通过相同字段的联系进行拼接，之所以出现多表的情况，也是因为现实中不可能存在一张大表包括所有字段。</p>
+<p>JOIN分类：</p>
+<ul>
+<li>Cross join - 笛卡尔积（交叉）连接</li>
+<li>Inner join - 内连接</li>
+<li>Outer join - 外连接(left, right, full)</li>
+<li>Self join - 自连接</li>
+</ul>
+<p>JOIN语法：</p>
+<ul>
+<li>SQL89——表之间用“，”逗号分割，链接条件和过滤条件都在Where子句指定：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  a.colA, </span><br><span class="line">  b.colA </span><br><span class="line"><span class="keyword">FROM</span>  </span><br><span class="line">  tab1 <span class="keyword">AS</span> a , tab2 <span class="keyword">AS</span> b </span><br><span class="line"><span class="keyword">WHERE</span> a.id <span class="operator">=</span> b.id <span class="keyword">and</span> a.other <span class="operator">&gt;</span> b.other </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>SQL92——表之间用JOIN分隔，将链接条件在ON子句指定，过滤条件在WHERE子句指定：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  a.colA, </span><br><span class="line">  b.colA </span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  tab1 <span class="keyword">AS</span> a <span class="keyword">JOIN</span> tab2 <span class="keyword">AS</span> b <span class="keyword">ON</span> a.id <span class="operator">=</span> b.id </span><br><span class="line"><span class="keyword">WHERE</span> </span><br><span class="line">  a.other <span class="operator">&gt;</span> b.other </span><br></pre></td></tr></table></figure>
+
+<p>JOIN涉及到的rule：</p>
+<p>在inner join的时候，可能涉及到<strong>过Filter</strong>和<strong>JOIN</strong>的组合，这里会涉及到<strong>RULE（请看这篇博客——<strong><strong>CALCITE</strong></strong>：SQL OPTIMIZE，待补充）</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>     </span><br><span class="line">stu.no, stu.name , s.score</span><br><span class="line"><span class="keyword">FROM</span> student stu <span class="keyword">JOIN</span> score s <span class="keyword">ON</span>  stu.no <span class="operator">=</span> s.s_no</span><br><span class="line"><span class="keyword">WHERE</span> s.score <span class="operator">&gt;</span> <span class="number">80</span>; </span><br></pre></td></tr></table></figure>
+
+<p>这里简单介绍一下，上述SQL改写成先执行Filter，效率会更快</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line"><span class="keyword">no</span>, name , score </span><br><span class="line"><span class="keyword">FROM</span> student stu <span class="keyword">JOIN</span> ( <span class="keyword">SELECT</span> s_no, score <span class="keyword">FROM</span> score s <span class="keyword">WHERE</span> s.score <span class="operator">&gt;</span><span class="number">80</span>) <span class="keyword">as</span> sc <span class="keyword">ON</span> <span class="keyword">no</span> <span class="operator">=</span> s_no; </span><br></pre></td></tr></table></figure>
+
+<p>因为先过滤再内联的话，性能会提升很多。</p>
+<p>当然实际上我们不需要改书写顺序，实际上数据库本身的优化器会自动进行查询优化（filter push down Rule），在内联接中ON的联接条件和WHERE的过滤条件具有相同的优先级，具体的执行顺序可以由数据库的优化器根据性能消耗决定。</p>
+<p>特别的，外连接是没有filter push down Rule的，自行模拟一下很容易理解。</p>
+<h3 id="Flink-SQL的JOIN"><a href="#Flink-SQL的JOIN" class="headerlink" title="Flink SQL的JOIN"></a>Flink SQL的JOIN</h3><p>以Flink 1.13为例，<a target="_blank" rel="noopener" href="https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/dev/table/sql/queries/joins/">官方文档</a>有详细说明</p>
+<h4 id="双流JOIN和传统数据库JOIN的区别"><a href="#双流JOIN和传统数据库JOIN的区别" class="headerlink" title="双流JOIN和传统数据库JOIN的区别"></a>双流JOIN和传统数据库JOIN的区别</h4><p>传统数据库表的JOIN是两张静态表的数据联接，在流上面是 动态表(关于流与动态表的关系请查阅 《<a target="_blank" rel="noopener" href="http://zhuanlan.51cto.com/art/201810/585946.htm">Apachehe Flink 漫谈系列 - 流表对偶(duality)性)</a>》，双流JOIN的数据不断流入与传统数据库表的JOIN有如下3个核心区别：</p>
+<ul>
+<li>左右两边的数据集合无穷 - 传统数据库左右两个表的数据集合是有限的，双流JOIN的数据会源源不断的流入;</li>
+<li>JOIN的结果不断产生&#x2F;更新 - 传统数据库表JOIN是一次执行产生最终结果后退出，双流JOIN会持续不断的产生新的结果。在 《<a target="_blank" rel="noopener" href="http://zhuanlan.51cto.com/art/201811/586368.htm">Apache Flink 漫谈系列 - 持续查询(Continuous Queries)</a>》篇也有相关介绍。</li>
+<li>查询计算的双边驱动 - 双流JOIN由于左右两边的流的速度不一样，会导致左边数据到来的时候右边数据还没有到来，或者右边数据到来的时候左边数据没有到来，所以在实现中要将左右两边的流数据进行保存，以保证JOIN的语义。在Blink中会以State的方式进行数据的存储。State相关请查看《<a target="_blank" rel="noopener" href="http://zhuanlan.51cto.com/art/201810/585018.htm">Apache Flink 漫谈系列 - State</a>》篇。</li>
+</ul>
+<h3 id="Lateral-JOIN"><a href="#Lateral-JOIN" class="headerlink" title="Lateral JOIN"></a>Lateral JOIN</h3><p>如下图所示，左为user_tb，右为order_tb</p>
+<table>
+<thead>
+<tr>
+<th>userId</th>
+<th>city</th>
+<th></th>
+<th>orderId</th>
+<th>userId</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>u1</td>
+<td>BJ</td>
+<td></td>
+<td>1</td>
+<td>u1</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>BJ</td>
+<td></td>
+<td>2</td>
+<td>u1</td>
+</tr>
+<tr>
+<td>u3</td>
+<td>SH</td>
+<td></td>
+<td>3</td>
+<td>u3</td>
+</tr>
+</tbody></table>
+<h5 id="Cross-apply"><a href="#Cross-apply" class="headerlink" title="Cross apply"></a>Cross apply</h5><p>如果我要查询每个订单的user_tb.city信息，可以用INNER JOIN</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    u.userid, u.city, o.orderId</span><br><span class="line"><span class="keyword">FROM</span> user_tb u <span class="keyword">JOIN</span> order_tb o </span><br><span class="line">    <span class="keyword">ON</span> u.userId <span class="operator">=</span> o.userId</span><br></pre></td></tr></table></figure>
+
+<p>事实上对于这种查询还有一种方法，即是LATERAL，SQL中的实现为CROSS APPLY</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    u.userId, u.city, o.orderId</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">user_tb u <span class="keyword">CROSS</span> APPLY (</span><br><span class="line">    <span class="keyword">SELECT</span> </span><br><span class="line">        o.orderId, o.userId</span><br><span class="line">    <span class="keyword">FROM</span> order_tb o</span><br><span class="line">    <span class="keyword">WHERE</span> o.userId <span class="operator">=</span> u.userId</span><br><span class="line">) <span class="keyword">AS</span> o</span><br></pre></td></tr></table></figure>
+
+<p>CROSS APPLY 的意思是“交叉应用”，在查询时首先遍历左表，然后右表的每一条记录跟左表的当前记录进行匹配。匹配成功则将左表与右表的记录合并为一条记录输出；匹配失败则抛弃左表与右表的记录。（与 INNER JOIN 类似）</p>
+<p>本质上是根据左表user_tb的userId，去查询右表的Orders信息，就像一个For循环一样，外层是遍历左表user_tb所有数据，内层是根据左表user_tb的每一个userId去右表Orders中进行遍历查询，然后再将符合条件的左右表数据进行JOIN，<strong>根据左表逐条数据动态生成右表进行JOIN</strong>。</p>
+<p>这里很自然的会延伸一个问题——LATERAL语法看着又烦，实现结果和INNNER JOIN好像也没有区别，为什么要引入这种语法？</p>
+<p>一方面是性能方面（待补充，通过sql server测试），一方面是在功能方面INNER JOIN本身在ANSI-SQL中是不允许 JOIN 一个Function的，这也是SQL Server当时引入CROSS APPLY的根本原因。</p>
+<h5 id="Flink-lateral-join"><a href="#Flink-lateral-join" class="headerlink" title="Flink lateral join"></a>Flink lateral join</h5><p>Flink 利用 Calcite进行SQL的解析和优化，目前Calcite完全支持LATERAL语法，示例如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> order_id, res</span><br><span class="line"><span class="keyword">FROM</span> Orders, <span class="keyword">LATERAL</span> <span class="keyword">TABLE</span>(table_func(order_id)) t(res)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/10/05/sql-join/01.png"></p>
+<p>参考文档：</p>
+<p><a target="_blank" rel="noopener" href="https://www.51cto.com/article/587210.html">https://www.51cto.com/article/587210.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/dev/table/sql/queries/joins/">https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/dev/table/sql/queries/joins/</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/shenfengyin">shenfy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shenfengyin.github.io/2023/10/05/sql-join/">https://shenfengyin.github.io/2023/10/05/sql-join/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shenfengyin.github.io" target="_blank">SHENFY_BLOG</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SQL/">SQL</a><a class="post-meta__tags" href="/tags/Flink/">Flink</a></div><div class="post_share"><div class="social-share" data-image="/img/tech/password.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/10/05/mysql-page-split/" title="关于新版雪花算法的理解"><img class="cover" src="/img/tech/camera.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">关于新版雪花算法的理解</div></div></a></div><div class="next-post pull-right"><a href="/2023/10/04/hexo-building-blog/" title="使用hexo搭建离线博客"><img class="cover" src="/img/tech/password.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">使用hexo搭建离线博客</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/cat-yuanbao.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">shenfy</div><div class="author-info__description">这里记录着fy的日常学习记录，包括后端开发、大数据开发和机器学习相关知识，陆续更新——</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/shenfengyin" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:shenfy@stu.pku.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客内容还在完善中～</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#join%E7%AE%97%E5%AD%90"><span class="toc-number">1.</span> <span class="toc-text">join算子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86SQL%E7%9A%84JOIN"><span class="toc-number">1.1.</span> <span class="toc-text">标准SQL的JOIN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flink-SQL%E7%9A%84JOIN"><span class="toc-number">1.2.</span> <span class="toc-text">Flink SQL的JOIN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8C%E6%B5%81JOIN%E5%92%8C%E4%BC%A0%E7%BB%9F%E6%95%B0%E6%8D%AE%E5%BA%93JOIN%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.1.</span> <span class="toc-text">双流JOIN和传统数据库JOIN的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lateral-JOIN"><span class="toc-number">1.3.</span> <span class="toc-text">Lateral JOIN</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Cross-apply"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">Cross apply</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Flink-lateral-join"><span class="toc-number">1.3.0.2.</span> <span class="toc-text">Flink lateral join</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/10/09/git-command/" title="git命令与原理"><img src="/img/tech/camera.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="git命令与原理"/></a><div class="content"><a class="title" href="/2023/10/09/git-command/" title="git命令与原理">git命令与原理</a><time datetime="2023-10-09T09:12:11.000Z" title="发表于 2023-10-09 17:12:11">2023-10-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/05/mysql-page-split/" title="关于新版雪花算法的理解"><img src="/img/tech/camera.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于新版雪花算法的理解"/></a><div class="content"><a class="title" href="/2023/10/05/mysql-page-split/" title="关于新版雪花算法的理解">关于新版雪花算法的理解</a><time datetime="2023-10-05T14:21:17.000Z" title="发表于 2023-10-05 22:21:17">2023-10-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/05/sql-join/" title="SQL JOIN的介绍"><img src="/img/tech/password.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SQL JOIN的介绍"/></a><div class="content"><a class="title" href="/2023/10/05/sql-join/" title="SQL JOIN的介绍">SQL JOIN的介绍</a><time datetime="2023-10-05T14:21:17.000Z" title="发表于 2023-10-05 22:21:17">2023-10-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/04/hexo-building-blog/" title="使用hexo搭建离线博客"><img src="/img/tech/password.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用hexo搭建离线博客"/></a><div class="content"><a class="title" href="/2023/10/04/hexo-building-blog/" title="使用hexo搭建离线博客">使用hexo搭建离线博客</a><time datetime="2023-10-04T04:00:22.000Z" title="发表于 2023-10-04 12:00:22">2023-10-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By shenfy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
