@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>SHENFY BLOG</title><meta name="author" content="Shen Fengyin"><meta name="copyright" content="Shen Fengyin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录博主日常学习记录，包括后端、大数据相关开发知识，后续会陆续更新机器学习的部分~~">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SHENFY BLOG">
+<meta property="og:url" content="https://shenfengyin.github.io/index.html">
+<meta property="og:site_name" content="SHENFY BLOG">
+<meta property="og:description" content="记录博主日常学习记录，包括后端、大数据相关开发知识，后续会陆续更新机器学习的部分~~">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://shenfengyin.github.io/img/sfy_portriat.jpg">
+<meta property="article:author" content="Shen Fengyin">
+<meta property="article:tag" content="后端开发">
+<meta property="article:tag" content="大数据">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shenfengyin.github.io/img/sfy_portriat.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://shenfengyin.github.io/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SHENFY BLOG',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2026-08-30 22:45:34'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/sfy_portriat.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 近期博客</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 相关</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="SHENFY BLOG"><span class="site-name">SHENFY BLOG</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 近期博客</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 相关</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/08/30/deepseek-harness-guide/" title="LLM 与 AI 工作台：DeepSeek Harness 安装、API 购买与配置教程">LLM 与 AI 工作台：DeepSeek Harness 安装、API 购买与配置教程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-08-29T16:00:00.000Z" title="发表于 2026-08-30 00:00:00">2026-08-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI%E5%B7%A5%E5%85%B7/">AI工具</a></span></div><div class="content">很多人已经用过 DeepSeek、豆包、Kimi、通义千问：打开网页，输入问题，等它回答。
+这类产品很像一位坐在会议室里的聪明顾问。它能理解问题、写方案、提建议，但通常不会直接打开你电脑里的项目文件、逐个检查材料、运行命令，再把结果保存回去。
+AI 工作台解决的正是这个问题：给大模型配上一台电脑和一套工具，让它从“会回答”升级为“能干活”。
+本文以开源的 DeepSeek Harness（简称 DSH） 为例，介绍：
+
+LLM 和 AI 工作台到底是什么关系；
+如何在自己的电脑上安装 DSH；
+如何购买 DeepSeek API 额度并创建 API Key；
+如何把 DeepSeek API 配置到 DSH 中；
+如何给 DSH 安装 PPT、学习和架构绘图 Skill；
+第一次使用时应注意哪些权限和费用问题。
+
+
+本文操作与页面名称核对于 2026 年 8 月 30 日。DeepSeek Harness 目前仍处于 Developer Preview（开发者预览）阶段，功能和安装方式可能快速变化。如果本文步骤与实际页面不一致，请以文末官方文档为准。
+
+一、LLM 和 AI 工作台是什 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/12/24/flink-sql-codegen-64kb-optimizer/" title="一个巧妙的业务优化器实践：解决Flink SQL Code Generation 64 KB 故障，用虚拟节点打断投影合并">一个巧妙的业务优化器实践：解决Flink SQL Code Generation 64 KB 故障，用虚拟节点打断投影合并</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-24T12:30:00.000Z" title="发表于 2023-12-24 20:30:00">2023-12-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Flink/">Flink</a></span></div><div class="content">在大数据计算中，有一类问题常见：SQL 本身语法正确，数据量也没有明显增长，任务却在提交或编译阶段失败。继续增加并行度、内存或 CPU 都没有效果，因为任务甚至还没有真正开始处理数据。
+我们在特征生产业务中遇到的正是这种故障。业务方配置了大量过滤条件和多层 SELECT，Flink 最终生成的 Java 方法超过 JVM 单方法字节码上限，查询因此失败。
+常见的处理方向是继续增强通用 Code Splitter，把超大方法递归拆成多个小方法。但在实际业务中，拆分过程可能带来很重的提交期开销，并伴随频繁 GC，极端情况下任务要等待数十分钟才能提交。为此，我们换了一个思路：不在代码已经膨胀后继续修补，而是在业务优化器中提前打断造成膨胀的投影合并链路。
+这个方案看似只是插入一个逻辑节点，背后却涉及 SQL 优化器、代码生成和 JVM 限制三层机制。本文完整拆解这一问题。
+一、故障现象：SQL 没错，为什么就是跑不起来？问题最初出现在特征生产任务中。此类任务通常具有几个特点：
+
+原始字段很多；
+特征加工链路包含多层 SELECT；
+每一层都可能新增 CASE WHEN、函数调用或类型转换；
+业 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/12/17/flink-frame/" title="Flink运行时架构">Flink运行时架构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-16T18:40:00.000Z" title="发表于 2023-12-17 02:40:00">2023-12-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Flink/">Flink</a></span></div><div class="content">Flink运行时架构
+本文主要介绍Flink的架构，涉及具体源码请移步源码解析。一句话总结——Flink是一个分布式的并行流处理系统。
+
+Flink作为如今最为热门的流处理框架，从批处理到Lambda架构再到Flink的问世，对比总结Flink的优点无非以下几点：
+
+高吞吐和低延迟。每秒处理数百万个事件，毫秒级延迟。
+
+结果的准确性。Flink 提供了事件时间（event-time）和处理时间（processing-time）语义。对于乱序事件流，事件时间语义仍然能提供一致且准确的结果。
+
+精确一次（exactly-once）的状态一致性保证。
+
+可以连接到最常用的存储系统，如 Apache Kafka、Apache Cassandra、Elasticsearch、JDBC、Kinesis 和（分布式）文件系统，如 HDFS 和 S3。
+
+高可用。本身高可用的设置，加上与 K8s，YARN 和 Mesos 的紧密集成，再加上从故障中快速恢复和动态扩展任务的能力，Flink 能做到以极少的停机时间 7×24 全天候运行。
+
+能够更新应用程序代码并将作业（jobs）迁移到不同的 Flink ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/12/03/Embedding-word2vec/" title="Embedding简单介绍">Embedding简单介绍</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-12-03T12:00:00.000Z" title="发表于 2023-12-03 20:00:00">2023-12-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">推荐系统</a></span></div><div class="content">
+笔者在写这片博客并没有系统的算法经验，只是简单的站在开发的角度上对于Embedding的理解，要是有误，感谢联系指出🙏～图片主要来源：《深度学习推荐系统》王喆
+
+背景​ 笔者在阅读推荐系统相关的知识的时候，经常碰到Embedding这一说法，比如说——“在具体的用户行为类特征的处理上，一种方式是预先训练好物品的Embedding，再通过平均或者类似于DIN模型注意力机制的方法生成历史行为Embedding向量，将其作为特征向量。”
+​ 上面这段话笔者第一反应的理解为Embedding是一种抽象现实对象的一种手段，简单来说就是量化。好奇下搜寻了一些博客去看，总算对Embedding有一些理解。
+word2vec​ 在推荐系统的背景下，谈论Embedding就离不开word2vec算法，我看了一些博文记录，上来就介绍word2vec，不管有没有统计学基础，这些文章的介绍都总让人眼前一黑。​ 笔者整理了一下思路，发觉要是按照“做什么？怎么做”这样的过程脉络应该更好理解Embedding、word2vec这些名词，毕竟有很多人只是开发出生。
+以工程过程理解Embedding工程场景复现​  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/09/git-command/" title="Git命令介绍">Git命令介绍</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-09T12:00:00.000Z" title="发表于 2023-10-09 20:00:00">2023-10-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/dev-tools/">dev tools</a></span></div><div class="content">本文介绍了git的一些原理和命令，通过目录和树结构可以充分的理解相关命令。
+git常用命令如果当前分支为: cur-branch
+常用的不介绍了：
+12345PLAINTEXTgit pullgit add .git commit -m &quot;message1&quot;git push
+
+git mergegit merge master #把master分支的更新合并到cur-branchgit merge origin&#x2F;master #把远程的master分支的更新合并到cur-branch
+git rebasegit rebase的作用是将找到当前分支和目标分支最近的节点，然后把修改记录重新rebase到目标分支的最新提交节点上。
+举个常用的例子：当我们在自己的分支sfy&#x2F;branchA上开发时，想要提MR的时候，需要保证当前分支是基于最新master的（因为你开发的时候，可能已经落后了master很多个提交）。因此需要进行rebase：
+
+git fetch
+git rebase origin&#x2F;master #如果不加的话默认来自于改分支的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/05/sql-join/" title="SQL JOIN算子">SQL JOIN算子</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-05T14:00:00.000Z" title="发表于 2023-10-05 22:00:00">2023-10-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Flink/">Flink</a></span></div><div class="content">join算子标准SQL的JOIN在介绍Flink SQL中的JOIN的之前，先回顾一下标准SQL的实现。
+JOIN的本质是将多表数据通过相同字段的联系进行拼接，之所以出现多表的情况，也是因为现实中不可能存在一张大表包括所有字段。
+JOIN分类：
+
+Cross join - 笛卡尔积（交叉）连接
+Inner join - 内连接
+Outer join - 外连接(left, right, full)
+Self join - 自连接
+
+JOIN语法：
+
+SQL89——表之间用“，”逗号分割，链接条件和过滤条件都在Where子句指定：
+
+1234567SQLSELECT   a.colA,   b.colA FROM    tab1 AS a , tab2 AS b WHERE a.id = b.id and a.other &gt; b.other 
+
+
+SQL92——表之间用JOIN分隔，将链接条件在ON子句指定，过滤条件在WHERE子句指定：
+
+12345678SQLSELECT   a.colA,   b.colA FROM   tab1 AS a JOIN tab2 AS b ON ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/05/new-UUID/" title="新版雪花算法的理解">新版雪花算法的理解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-05T12:00:00.000Z" title="发表于 2023-10-05 20:00:00">2023-10-05</time></span></div><div class="content">本文章主要介绍MySQL页分裂和关于新版雪花算法的理解。
+页分裂看MySQL索引相关内容的时候，经常会有一个问题，为什么UUID不能作为索引？
+答：最主要的原因就是UUID的随机性，导致索引树插入新UUID的时候需要更为复杂的一个更新，页分裂频繁。
+这里解释一下具体细节：
+首先，我们知道InnoDB 引擎使用索引组织表，即将所有数据记录有序存放在一个 B-tree 结构中，结构如下图所示：
+
+在这里插入数据采用的中间点插入和插入点分裂两种策略，可以参考文章 http://mysql.taobao.org/monthly/2021/06/05/
+12345PLAINTEXT1. 在这里插入9的话会导致第一层（2、5）增加9，第二层多出一个page。2. 如果第一层为（2、5、9、15），第二层所有页面也是满的时候，向后插入100和中间插入10的效果完全不一样。    - 插入10，第一层页分裂，数据50%移动，有很大成本；第二层同理。   - 插入100，向后插入，开销小一点。
+
+通过上述分析，不难理解，我们希望的是page填满后，接在尾部进行数据（索引）插入，这样的开销小很多。这也是U ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/04/hexo-butterfly/" title="使用hexo搭建离线博客">使用hexo搭建离线博客</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-04T07:30:00.000Z" title="发表于 2023-10-04 15:30:00">2023-10-04</time></span></div><div class="content">使用hexo搭建离线博客
+环境搭建介绍静态博客：编写文档格式文件（如.md文件），通过生成工具编译成最终的hml、css、js等静态文件，然后部署在静态Server服务器上或Web托管至数据仓库（如：Github），本博客搭建采用的的就是这种方法——基于hexo框架生成静态网页，然后托管至Github
+优点：
+
+简单高效——Hexo 是一个基于Node.js的快速、简洁且高效的静态博客框架，具有丰富的主题、插件系统，部署简单、成本低廉、运行优化非常高效。
+安全性好——Hexo 框架的博客网站没有网站后台，不存在后台安全漏洞的问题。
+无需服务器——输入.github.io就可以直接访问，同时支持pc端、手机端，无需额外购买服务器和域名（当然也可以部署在服务器上）
+
+本地配置提前安装好Hexo、git、WebStorm、node.jsfy搭建的时候用的是mac，windows的话也建议用虚拟机搭建环境，上述安装步骤如下
+git安装、github创建新仓库12仓库名必须为&lt;username&gt;.github.io``eg: fy这里用的是shenfengyin.github.io
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/04/hexo-building-blog/" title="使用hexo搭建离线博客">使用hexo搭建离线博客</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-04T04:00:22.000Z" title="发表于 2023-10-04 12:00:22">2023-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/">网站搭建</a></span></div><div class="content">使用hexo搭建离线博客
+环境搭建介绍静态博客：编写文档格式文件（如.md文件），通过生成工具编译成最终的hml、css、js等静态文件，然后部署在静态Server服务器上或Web托管至数据仓库（如：Github），本博客搭建采用的的就是这种方法——基于hexo框架生成静态网页，然后托管至Github
+优点：
+
+简单高效——Hexo 是一个基于Node.js的快速、简洁且高效的静态博客框架，具有丰富的主题、插件系统，部署简单、成本低廉、运行优化非常高效。
+安全性好——Hexo 框架的博客网站没有网站后台，不存在后台安全漏洞的问题。
+无需服务器——输入.github.io就可以直接访问，同时支持pc端、手机端，无需额外购买服务器和域名（当然也可以部署在服务器上）
+
+本地配置提前安装好Hexo、git、WebStorm、node.js风吟搭建的时候用的是mac，windows的话也建议用虚拟机搭建环境，上述安装步骤如下
+
+git安装、github创建新仓库仓库名必须为&lt;username&gt;.github.ioeg: 风吟这里用的是shenfengyin.github.io
+
+he ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/18/LSM/" title="LSM学习">LSM学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-18T12:00:00.000Z" title="发表于 2022-12-18 20:00:00">2022-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span></div><div class="content">[转载]LSM树讲清楚了LSM merge的基本原理：http://weakyon.com/2015/04/08/Log-Structured-Merge-Trees.html#%E4%B8%80%E4%BA%9B%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86
+讲清楚了LSM的两种compact方法（磁盘)：1 size-tiered （merge）2 leveled (有点像跳表？？？)https://zhuanlan.zhihu.com/p/181498475
+LSM树，即日志结构合并树(Log-Structured Merge-Tree)。 其实它并不属于一个具体的数据结构，它更多是一种数据结构的设计思想。 大多NoSQL数据库核心思想都是基于LSM来做的， 只是具体的实现不同。
+
+B+树和LSM存储结构，二者写性能差异主要有两点（？存疑
+1、异步持久化磁盘！1.1内存不是无限的 1.2redo log也不是无限大。每当写到一定量的时候就需要触发一次同步刷盘，同时会阻塞写操作。对于写来说性能瓶颈就在刷盘这个地方。lsm由于顺序刷盘这个瓶颈比mysql高。 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/sfy_portriat.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Shen Fengyin</div><div class="author-info__description">记录博主日常学习记录，包括后端、大数据相关开发知识，后续会陆续更新机器学习的部分~~</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/shenfengyin"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/shenfengyin" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:shenfy@stu.pku.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客内容更新-ing</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/30/deepseek-harness-guide/" title="LLM 与 AI 工作台：DeepSeek Harness 安装、API 购买与配置教程">LLM 与 AI 工作台：DeepSeek Harness 安装、API 购买与配置教程</a><time datetime="2026-08-29T16:00:00.000Z" title="发表于 2026-08-30 00:00:00">2026-08-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/24/flink-sql-codegen-64kb-optimizer/" title="一个巧妙的业务优化器实践：解决Flink SQL Code Generation 64 KB 故障，用虚拟节点打断投影合并">一个巧妙的业务优化器实践：解决Flink SQL Code Generation 64 KB 故障，用虚拟节点打断投影合并</a><time datetime="2023-12-24T12:30:00.000Z" title="发表于 2023-12-24 20:30:00">2023-12-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/17/flink-frame/" title="Flink运行时架构">Flink运行时架构</a><time datetime="2023-12-16T18:40:00.000Z" title="发表于 2023-12-17 02:40:00">2023-12-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/03/Embedding-word2vec/" title="Embedding简单介绍">Embedding简单介绍</a><time datetime="2023-12-03T12:00:00.000Z" title="发表于 2023-12-03 20:00:00">2023-12-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/09/git-command/" title="Git命令介绍">Git命令介绍</a><time datetime="2023-10-09T12:00:00.000Z" title="发表于 2023-10-09 20:00:00">2023-10-09</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">AI工具</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Flink/"><span class="card-category-list-name">Flink</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/dev-tools/"><span class="card-category-list-name">dev tools</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/"><span class="card-category-list-name">推荐系统</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class="card-category-list-name">数据结构</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"><span class="card-category-list-name">网站搭建</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/JOIN/" style="font-size: 1.1em; color: #999">JOIN</a> <a href="/tags/DeepSeek-Harness/" style="font-size: 1.1em; color: #999">DeepSeek Harness</a> <a href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">推荐系统</a> <a href="/tags/Flink/" style="font-size: 1.5em; color: #99a9bf">Flink</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 1.1em; color: #999">博客搭建</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/hexo/" style="font-size: 1.3em; color: #99a1ac">hexo</a> <a href="/tags/DeepSeek/" style="font-size: 1.1em; color: #999">DeepSeek</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.1em; color: #999">深度学习</a> <a href="/tags/SQL%E4%BC%98%E5%8C%96/" style="font-size: 1.1em; color: #999">SQL优化</a> <a href="/tags/Code-Generation/" style="font-size: 1.1em; color: #999">Code Generation</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.1em; color: #999">数据库</a> <a href="/tags/%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">雪花算法</a> <a href="/tags/SQL/" style="font-size: 1.1em; color: #999">SQL</a> <a href="/tags/JVM/" style="font-size: 1.1em; color: #999">JVM</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/" style="font-size: 1.1em; color: #999">分布式架构</a> <a href="/tags/RBO/" style="font-size: 1.1em; color: #999">RBO</a> <a href="/tags/AI/" style="font-size: 1.1em; color: #999">AI</a> <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">开发工具</a> <a href="/tags/LSM/" style="font-size: 1.1em; color: #999">LSM</a> <a href="/tags/Spark/" style="font-size: 1.1em; color: #999">Spark</a> <a href="/tags/butterfly/" style="font-size: 1.1em; color: #999">butterfly</a> <a href="/tags/Embedding/" style="font-size: 1.1em; color: #999">Embedding</a> <a href="/tags/MySQL/" style="font-size: 1.1em; color: #999">MySQL</a> <a href="/tags/LLM/" style="font-size: 1.1em; color: #999">LLM</a> <a href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" style="font-size: 1.1em; color: #999">网站搭建</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.1em; color: #999">数据结构</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/08/"><span class="card-archive-list-date">八月 2026</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">10</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-08-30T14:45:34.077Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2026 By Shen Fengyin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">身体健康，吃好喝好~.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
