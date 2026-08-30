@@ -19,6 +19,11 @@ const posts = [
   ['hexo-building-blog', '2023/10/04/hexo-building-blog'],
 ];
 
+const similarityThresholds = new Map([
+  // Formula markup was intentionally normalized and now renders through MathJax.
+  ['Embedding-word2vec', 0.93],
+]);
+
 function articleText(filename) {
   const $ = cheerio.load(fs.readFileSync(filename, 'utf8'));
   const article = $('#article-container').first();
@@ -65,6 +70,7 @@ function localImageReferences(markdown) {
 }
 
 const missing = [];
+const validationErrors = [];
 const results = [];
 
 for (const [slug, outputPath] of posts) {
@@ -86,6 +92,23 @@ for (const [slug, outputPath] of posts) {
 
   const originalText = articleText(originalFile);
   const generatedText = articleText(generatedFile);
+  const generatedHtml = fs.readFileSync(generatedFile, 'utf8');
+  if (slug === 'Embedding-word2vec') {
+    const requiredMath = [
+      'window.MathJax',
+      'tex-mml-chtml.min.js',
+      '$p(w_{t+1} \\mid w_t)$',
+      '$$\\prod_{t&#x3D;1}^{T-1}',
+    ];
+    for (const snippet of requiredMath) {
+      if (!generatedHtml.includes(snippet)) {
+        validationErrors.push(
+          slug + ': missing generated math marker ' + snippet,
+        );
+      }
+    }
+  }
+
   results.push({
     slug,
     images: imageReferences.length,
@@ -97,11 +120,18 @@ for (const [slug, outputPath] of posts) {
 
 console.table(results);
 
-const lowSimilarity = results.filter((result) => Number(result.similarity) < 0.98);
-if (missing.length || lowSimilarity.length) {
+const lowSimilarity = results.filter((result) => {
+  const threshold = similarityThresholds.get(result.slug) || 0.98;
+  return Number(result.similarity) < threshold;
+});
+if (missing.length || validationErrors.length || lowSimilarity.length) {
   if (missing.length) console.error('Missing files:', missing);
+  if (validationErrors.length) console.error('Validation errors:', validationErrors);
   if (lowSimilarity.length) console.error('Low similarity:', lowSimilarity);
   process.exit(1);
 }
 
-console.log(`Verified ${results.length} posts with no missing local image assets.`);
+console.log(
+  'Verified ' + results.length
+    + ' posts with no missing local image assets and valid math markers.',
+);

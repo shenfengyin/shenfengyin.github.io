@@ -5,7 +5,7 @@ type: about
 comments: false
 ---
 
-这里记录后端研发、大数据、推荐系统和机器学习相关的学习内容。
+这里记录后端研发、大数据、推荐系统和 AI 相关的学习内容。
 
 - GitHub：[shenfengyin](https://github.com/shenfengyin)
 - Email：[shenfy@stu.pku.edu.cn](mailto:shenfy@stu.pku.edu.cn)

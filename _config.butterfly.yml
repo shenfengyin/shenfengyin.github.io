@@ -75,7 +75,7 @@ aside:
     category: true
   card_author:
     enable: true
-    description: 记录博主日常学习记录，包括后端、大数据相关开发知识，后续会陆续更新机器学习的部分~~
+    description: 记录博主日常学习记录，包括后端、大数据和 AI 相关开发知识~~
     button:
       enable: true
       icon: fab fa-github
@@ -143,6 +143,14 @@ busuanzi:
 
 wordcount:
   enable: false
+
+mathjax:
+  enable: true
+  per_page: false
+
+inject:
+  bottom:
+    - <script src="/js/pageview.js"></script>
 
 lightbox: fancybox
 beautify:
