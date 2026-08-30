@@ -1,0 +1,149 @@
+favicon: /img/favicon.png
+
+avatar:
+  img: /img/sfy_portriat.jpg
+  effect: false
+
+menu:
+  主页: / || fas fa-home
+  近期博客: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
+  分类: /categories/ || fas fa-folder-open
+  友链: /link/ || fas fa-link
+  相关: /about/ || fas fa-heart
+
+social:
+  fab fa-github: https://github.com/shenfengyin || Github || '#24292e'
+  fas fa-envelope: mailto:shenfy@stu.pku.edu.cn || Email || '#4a7dbe'
+
+index_img: false
+default_top_img: false
+archive_img: false
+tag_img: false
+category_img: false
+
+index_post_content:
+  method: 3
+  length: 500
+
+post_meta:
+  page:
+    date_type: created
+    date_format: date
+    categories: true
+    tags: false
+    label: true
+  post:
+    position: left
+    date_type: both
+    date_format: date
+    categories: true
+    tags: false
+    label: true
+
+toc:
+  post: true
+  page: false
+  number: true
+  expand: false
+  style_simple: false
+  scroll_percent: true
+
+post_copyright:
+  enable: true
+  decode: false
+  author_href: https://github.com/shenfengyin
+  license: CC BY-NC-SA 4.0
+  license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+footer:
+  owner:
+    enable: true
+    since: 2022
+  custom_text: 身体健康，吃好喝好~.
+  copyright: true
+
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  position: right
+  display:
+    archive: true
+    tag: true
+    category: true
+  card_author:
+    enable: true
+    description: 记录博主日常学习记录，包括后端、大数据相关开发知识，后续会陆续更新机器学习的部分~~
+    button:
+      enable: true
+      icon: fab fa-github
+      text: Follow Me
+      link: https://github.com/shenfengyin
+  card_announcement:
+    enable: true
+    content: 博客内容更新-ing
+  card_recent_post:
+    enable: true
+    limit: 5
+    sort: date
+    sort_order: null
+  card_categories:
+    enable: true
+    limit: 8
+    expand: none
+    sort_order: null
+  card_tags:
+    enable: true
+    limit: 40
+    color: false
+    orderby: random
+    order: 1
+    sort_order: null
+  card_archives:
+    enable: true
+    type: monthly
+    format: MMMM YYYY
+    order: -1
+    limit: 8
+    sort_order: null
+  card_webinfo:
+    enable: true
+    post_count: true
+    last_push_date: true
+    sort_order: null
+
+rightside_item_order:
+  enable: false
+
+darkmode:
+  enable: true
+  button: true
+  autoChangeMode: false
+
+preloader:
+  enable: true
+  source: 1
+  pace_css_url: ''
+
+fireworks:
+  enable: true
+  zIndex: 9999
+  mobile: false
+
+canvas_fluttering_ribbon:
+  enable: true
+  mobile: false
+
+busuanzi:
+  site_uv: true
+  site_pv: true
+  page_pv: true
+
+wordcount:
+  enable: false
+
+lightbox: fancybox
+beautify:
+  enable: false

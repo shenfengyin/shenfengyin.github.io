@@ -1,0 +1,27 @@
+- class_name: 技术支持
+  class_desc: 本网站的搭建由以下开源项目提供技术支持。
+  link_list:
+    - name: Hexo
+      link: https://hexo.io/zh-tw/
+      avatar: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg
+      descr: 快速、简单且强大的博客框架
+
+- class_name: 推荐博客
+  class_desc: 平时阅读并值得推荐的技术博客。
+  link_list:
+    - name: 美团技术博客
+      link: https://tech.meituan.com/
+      avatar: /img/friend_404.gif
+      descr: 来自美团技术团队分享
+    - name: 凤凰架构
+      link: https://icyfenix.cn/
+      avatar: /img/friend_404.gif
+      descr: 构建可靠的大型分布式系统
+    - name: liebing
+      link: https://liebing.org.cn/apache-calcite-overview.html
+      avatar: /img/friend_404.gif
+      descr: 帮助入门 Calcite 的个人博客
+    - name: strongduanmu
+      link: https://strongduanmu.com/blog/apache-calcite-learning-materials.html
+      avatar: /img/friend_404.gif
+      descr: 帮助入门 Calcite 的个人博客
