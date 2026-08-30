@@ -150,7 +150,7 @@ mathjax:
 
 inject:
   bottom:
-    - <script src="/js/pageview.js"></script>
+    - <script src="/js/pageview.js?v=2"></script>
 
 lightbox: fancybox
 beautify:
