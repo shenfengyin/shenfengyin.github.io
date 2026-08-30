@@ -12,7 +12,7 @@
 
   // Busuanzi's value when this article was reset on 2026-08-31.
   const resetOffsets = {
-    '/2026/08/30/deepseek-harness-guide/': 7
+    '/2026/08/30/deepseek-harness-guide/': 9
   }
 
   const normalizePath = () => {
