@@ -10,22 +10,30 @@
     '/2023/12/17/flink-frame/': 196
   }
 
+  // Busuanzi's value when this article was reset on 2026-08-31.
+  const resetOffsets = {
+    '/2026/08/30/deepseek-harness-guide/': 7
+  }
+
   const normalizePath = () => {
     const path = window.location.pathname.replace(/index\.html$/, '')
     return path.endsWith('/') ? path : path + '/'
   }
 
   const applyBaseline = () => {
-    const baseline = historicalBaselines[normalizePath()]
+    const path = normalizePath()
+    const baseline = historicalBaselines[path] || 0
+    const resetOffset = resetOffsets[path] || 0
     const counter = document.querySelector('#busuanzi_value_page_pv')
-    if (!baseline || !counter || counter.dataset.baselineApplied === 'true') return
+    if ((!baseline && !resetOffset) || !counter || counter.dataset.baselineApplied === 'true') return
 
     const render = () => {
       const match = counter.textContent.replace(/,/g, '').match(/\d+/)
       if (!match) return false
 
       counter.dataset.baselineApplied = 'true'
-      counter.textContent = (Number(match[0]) + baseline).toLocaleString('zh-CN')
+      const pageviews = Math.max(0, Number(match[0]) + baseline - resetOffset)
+      counter.textContent = pageviews.toLocaleString('zh-CN')
       return true
     }
 
