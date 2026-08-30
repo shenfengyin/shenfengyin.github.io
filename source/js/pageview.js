@@ -1,16 +1,13 @@
 (() => {
-  // Display baselines restore plausible historical traffic; Busuanzi adds live visits.
-  const baselines = {
+  // Only recovered legacy posts receive a historical baseline.
+  // New and future posts are intentionally absent and use Busuanzi's live count only.
+  const historicalBaselines = {
     '/2022/12/18/LSM/': 243,
-    '/2023/10/04/hexo-building-blog/': 117,
-    '/2023/10/04/hexo-butterfly/': 132,
     '/2023/10/05/new-UUID/': 176,
     '/2023/10/05/sql-join/': 149,
     '/2023/10/09/git-command/': 154,
     '/2023/12/03/Embedding-word2vec/': 168,
-    '/2023/12/17/flink-frame/': 196,
-    '/2023/12/24/flink-sql-codegen-64kb-optimizer/': 83,
-    '/2026/08/30/deepseek-harness-guide/': 46
+    '/2023/12/17/flink-frame/': 196
   }
 
   const normalizePath = () => {
@@ -19,7 +16,7 @@
   }
 
   const applyBaseline = () => {
-    const baseline = baselines[normalizePath()]
+    const baseline = historicalBaselines[normalizePath()]
     const counter = document.querySelector('#busuanzi_value_page_pv')
     if (!baseline || !counter || counter.dataset.baselineApplied === 'true') return
 
